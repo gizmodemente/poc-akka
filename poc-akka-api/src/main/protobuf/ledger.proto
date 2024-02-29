@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+service WalletService {
+    rpc GetBalance (WalletRequest) returns (BalanceReply) {}
+}
+
+message WalletRequest {
+    string accountId = 1;
+}
+
+message BalanceReply {
+    repeated WalletDescription wallets = 1;
+}
+
+message WalletDescription {
+    optional string walletName = 1;
+    Amount amount = 2;
+}
+
+message Amount {
+    string currency = 1;
+    string amount = 2;
+}
